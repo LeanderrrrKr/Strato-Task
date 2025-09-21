@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spendenaufruf-StratoTask</title>
+    <style>
+      body {
+        margin: 0;
+        line-height: 1.6;
+        color: #ffffff;
+        background: url(bilder/ebeab70a-9916-4722-a756-43952ef95e49.JPG)
+          no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+      }
+
+      .container {
+        right: 32px;
+        left: 32px;
+        top: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .TS-Logo {
+        width: 8%;
+        height: auto;
+      }
+
+      .donate button {
+        border: none;
+        padding: 10px 15px;
+        font-size: 1.5em;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        background: rgb(36, 36, 36);
+        transition: 0.3s;
+      }
+      .donate {
+        margin-right: 40px;
+      }
+
+      .headline {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 60px;
+      }
+
+      .text {
+        margin: 200px auto 0 auto;
+        font-size: 45px;
+        max-width: 1680px;
+      }
+
+      .text h2 {
+        margin-top: 300px;
+        margin-bottom: 5px;
+      }
+
+      .text p {
+        margin-bottom: 80px;
+      }
+
+      .small-text {
+        line-height: 1.2;
+        font-size: 35px;
+      }
+
+      footer {
+        width: 100%;
+        background: #111;
+        color: #fff;
+        padding: 60px 20px 30px;
+        margin-top: 100px;
+      }
+
+      footer h3 {
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      footer p,
+      footer a {
+        font-size: 16px;
+        line-height: 1.4;
+        color: #ddd;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: #fff;
+      }
+
+      footer .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 40px;
+      }
+
+      footer .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 14px;
+        color: #aaa;
+        line-height: 1.6;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-content {
+        background-color: #cccccc;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 12px;
+        width: 80%;
+        max-width: 600px;
+        color: #000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .close {
+        color: #000000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="TS-Logo" src="bilder/TS-Logo.png" alt="" />
+      <h1 class="headline">Strato-Task</h1>
+      <div class="donate">
+        <button onclick="openModal()">Spenden</button>
+      </div>
+    </div>
+
+    <div class="text">
+      <div class="text1">
+        <h2 class="headline-text">Was wir machen</h2>
+        <p class="small-text">
+          Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
+          Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
+          aufgezeichnet, außerdem werden Bilder und Videos gemacht. Nach der
+          Landung werten wir die Ergebnisse aus und dokumentieren den gesamten
+          Ablauf des Projekts. So verbinden wir naturwissenschaftliches Arbeiten
+          mit praktischer Durchführung.
+        </p>
+      </div>
+
+      <div class="text2">
+        <h2 class="headline-text">Wie wir es machen</h2>
+        <p class="small-text">
+          Wir verwenden einen mit Helium gefüllten Ballon, an dem eine kleine
+          Box befestigt ist. In dieser Box befinden sich Sensoren, Kameras und
+          ein GPS-Tracker. Während des Aufstiegs zeichnen die Geräte Daten und
+          Bilder auf. Sobald der Ballon in großer Höhe platzt, sinkt die Box
+          mithilfe eines Fallschirms zurück auf die Erde. Mit dem GPS-Signal
+          können wir sie wiederfinden und die Messungen sowie Aufnahmen
+          auswerten.
+        </p>
+      </div>
+
+      <div class="text3">
+        <h2 class="headline-text">Was uns motiviert</h2>
+        <p class="small-text">
+          Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
+          Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
+          aufgezeichnet, außerdem werden Bilder und Videos gemacht. Nach der
+          Landung werten wir die Ergebnisse aus und dokumentieren den gesamten
+          Ablauf des Projekts. So verbinden wir naturwissenschaftliches Arbeiten
+          mit praktischer Durchführung.
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal-Fenster -->
+    <div id="donateModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Wie können Sie uns unterstützen?</h2>
+
+        <!-- Logo mittig -->
+        <img
+          src="bilder/TS-Logo-blau.png"
+          alt="Logo"
+          style="width:180px; margin:20px auto; display:block;"
+        />
+
+        <p>
+          Verein Freunde der Tellkampfschule e.V.<br />
+          Altenbekener Damm 83<br />
+          30173 Hannover<br />
+          Tel.: 0511/168-46717
+        </p>
+        <p>
+          <strong>Spendenkonto:</strong><br />
+          Sparkasse Hannover<br />
+          IBAN: DE86 2505 0180 0910 4309 50<br />
+          BIC: SPKHDE2HXXX
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div style="flex: 1; min-width: 250px;">
+          <h3>About</h3>
+          <p>
+            Wir sind das Seminarfach der 12. Klasse an der Tellkampfschule.
+            Unser Projekt „Strato-Task“ verbindet naturwissenschaftliches
+            Arbeiten mit praktischer Durchführung, indem wir einen Ballon in die
+            Stratosphäre starten, Messdaten sammeln und die Ergebnisse
+            dokumentieren.
+          </p>
+        </div>
+
+        <div style="flex: 1; min-width: 250px;">
+          <h3>Kontakt</h3>
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:stratotask@tellkampfschule.eu"
+              >stratotask@tellkampfschule.eu</a
+            >
+          </p>
+          <p>
+            <strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173
+            Hannover
+          </p>
+        </div>
+
+        <div style="flex: 1; min-width: 250px;">
+          <h3>Standort</h3>
+          <p>Altenbekener Damm 83, 30173 Hannover</p>
+          <img
+            src="bilder/data=HQ2wN3CFArkQyZVOTYrG2-3aBCzm44-Jve8SyDNsAMntbxUBYg39YddbuMwGPqfCOPOkAkrcgaVVa14opgmqlFIGiYl1oCJ90Dhfosm8_BA_gZ9dB75oesRIdZwUJ-Cql_vD6e7hCANNsqedYHUyOaAUhn1ocGYZjvz6yfhlGMBi66EFQQ&w=241&h=160.png"
+            alt="Google Maps Standort"
+            style="width:100%; max-width:300px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.3);"
+          />
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 Strato-Task - Tellkampfschule Hannover <br />
+        Erstellt von Leander; Geschrieben von Yul und Tom
+      </div>
+    </footer>
+
+    <script>
+      function openModal() {
+        document.getElementById("donateModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("donateModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        let modal = document.getElementById("donateModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>
