@@ -5,100 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spendenaufruf-StratoTask</title>
     <style>
- 
-      :root{ --overlay-rgba: rgba(0,0,0,0.6); }
+  
       body {
         margin: 0;
-        line-height: 1.6;
-        color: #ffffff;
         font-family: Arial, Helvetica, sans-serif;
+        color: #fff;
+        line-height: 1.6;
         background-color: #000;
+        overflow-x: hidden;
       }
 
-    
-      .bg {
+
+      .background {
         position: fixed;
-        inset: 0;
-        z-index: -2;
-        overflow: hidden;
-        pointer-events: none;
-      }
-      .bg img {
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;      
+        z-index: -2;
+        overflow: hidden;
+      }
+
+      .background img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         object-position: center;
         display: block;
+        transform: translateZ(0);
       }
 
-     
+
       .overlay {
         position: fixed;
-        inset: 0;
-        background: var(--overlay-rgba);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
         z-index: -1;
-        pointer-events: none;
       }
 
+      /* ===== Header ===== */
       .container {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 20px 40px;
-        z-index: 1; /* Inhalt über Overlay */
-        position: relative;
+        flex-wrap: wrap;
       }
 
       .TS-Logo {
-        width: 8%;
+        width: clamp(80px, 10vw, 120px);
         height: auto;
+        max-height: 120px;
+      }
+
+      .headline {
+        font-size: clamp(28px, 6vw, 60px);
+        text-align: center;
+        flex: 1;
+      }
+
+      .donate {
+        margin-right: 20px;
       }
 
       .donate button {
         border: none;
         padding: 10px 15px;
-        font-size: 1.5em;
+        font-size: clamp(16px, 4vw, 20px);
         border-radius: 8px;
         cursor: pointer;
-        color: #ffffff;
+        color: #fff;
         font-weight: bold;
         font-family: Georgia, "Times New Roman", Times, serif;
         background: rgb(36, 36, 36);
         transition: 0.3s;
       }
-      .donate { margin-right: 40px; }
 
-      .headline {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 60px;
+      .donate button:hover {
+        background: #444;
       }
 
+     
       .text {
-        margin: 200px auto 0 auto;
-        font-size: 45px;
-        max-width: 1680px;
-        z-index: 1;
-        position: relative;
+        margin: 150px auto 0 auto;
+        font-size: clamp(18px, 3vw, 28px);
+        max-width: 1200px;
+        padding: 0 20px;
       }
 
-      .text h2 { margin-top: 300px; margin-bottom: 5px; }
-      .text p { margin-bottom: 80px; }
-      .small-text { line-height: 1.2; font-size: 35px; }
+      .text h2 {
+        margin-top: 120px;
+        font-size: clamp(22px, 4vw, 36px);
+      }
 
+      .small-text {
+        font-size: clamp(16px, 2.5vw, 24px);
+        line-height: 1.5;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-content {
+        background-color: #ccc;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        color: #000;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: #333;
+      }
+
+   
       footer {
-        width: 100%;
         background: #111;
         color: #fff;
         padding: 60px 20px 30px;
         margin-top: 100px;
-        z-index: 1;
-        position: relative;
       }
 
-      footer h3 { margin-bottom: 15px; font-size: 20px; }
-      footer p, footer a { font-size: 16px; line-height: 1.4; color: #ddd; text-decoration: none; }
-      footer a:hover { color: #fff; }
+      footer h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      footer p,
+      footer a {
+        font-size: 16px;
+        color: #ddd;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: #fff;
+      }
 
       footer .footer-container {
         display: flex;
@@ -109,92 +171,46 @@
         gap: 40px;
       }
 
-      footer .footer-bottom {
+      .footer-bottom {
         text-align: center;
         margin-top: 40px;
         font-size: 14px;
         color: #aaa;
-        line-height: 1.6;
       }
 
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.6);
+    
+      @supports (-webkit-touch-callout: none) {
+      
+        .background {
+          position: absolute;
+        }
       }
-
-      .modal-content {
-        background-color: #cccccc;
-        margin: 10% auto;
-        padding: 30px;
-        border-radius: 12px;
-        width: 80%;
-        max-width: 600px;
-        color: #000;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        text-align: center;
-      }
-
-      .close {
-        color: #000000;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .close:hover { color: #000; }
-
-
-      @media (max-width: 1024px) {
-        .headline { font-size: 42px; }
-        .text { font-size: 30px; margin: 120px auto 0 auto; padding: 0 20px; }
-        .small-text { font-size: 25px; }
-        .donate button { font-size: 1.2em; }
-        footer .footer-container { gap: 20px; }
-      }
-
 
       @media (max-width: 768px) {
         .container {
           flex-direction: column;
           text-align: center;
-          padding: 15px 20px;
         }
 
-        .TS-Logo { width: 25%; }
-        .headline { font-size: 32px; margin-top: 15px; }
-        .donate { margin-top: 10px; }
-        .donate button { font-size: 1.1em; padding: 8px 12px; }
+        .donate {
+          margin: 10px 0 0;
+        }
 
-        .text { margin: 60px auto 0 auto; font-size: 22px; padding: 0 15px; }
-        .text h2 { margin-top: 100px; font-size: 26px; }
-        .small-text { font-size: 18px; line-height: 1.4; }
+        footer .footer-container {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
 
-        footer { padding: 40px 15px; }
-        footer .footer-container { flex-direction: column; align-items: center; text-align: center; }
-        footer img { max-width: 90%; margin-top: 10px; }
-        footer h3 { font-size: 18px; }
-        footer p { font-size: 14px; }
-        footer .footer-bottom { font-size: 13px; margin-top: 30px; }
-
-   
-        .bg img { object-position: 50% 20%; }
-      }
-
-      @media (max-width: 420px) {
-        .headline { font-size: 28px; }
-        .text { font-size: 18px; margin: 50px auto 0 auto; }
+        footer img {
+          width: 90%;
+          max-width: 300px;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="bg">
+    <div class="background">
       <img src="ebeab70a-9916-4722-a756-43952ef95e49.JPG" alt="Hintergrund" />
     </div>
     <div class="overlay"></div>
@@ -208,49 +224,44 @@
     </div>
 
     <div class="text">
-      <div class="text1">
-        <h2>Was wir machen</h2>
-        <p class="small-text">
-          Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
-          Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
-          aufgezeichnet, außerdem werden Bilder und Videos gemacht. Nach der
-          Landung werten wir die Ergebnisse aus und dokumentieren den gesamten
-          Ablauf des Projekts. So verbinden wir naturwissenschaftliches Arbeiten
-          mit praktischer Durchführung.
-        </p>
-      </div>
+      <h2>Was wir machen</h2>
+      <p class="small-text">
+        Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt. Während
+        des Flugs werden Daten wie Temperatur, Luftdruck und Höhe aufgezeichnet,
+        außerdem werden Bilder und Videos gemacht. Nach der Landung werten wir
+        die Ergebnisse aus und dokumentieren den gesamten Ablauf des Projekts.
+        So verbinden wir naturwissenschaftliches Arbeiten mit praktischer
+        Durchführung.
+      </p>
 
-      <div class="text2">
-        <h2>Wie wir es machen</h2>
-        <p class="small-text">
-          Wir verwenden einen mit Helium gefüllten Ballon, an dem eine kleine
-          Box befestigt ist. In dieser Box befinden sich Sensoren, Kameras und
-          ein GPS-Tracker. Während des Aufstiegs zeichnen die Geräte Daten und
-          Bilder auf. Sobald der Ballon in großer Höhe platzt, sinkt die Box
-          mithilfe eines Fallschirms zurück auf die Erde. Mit dem GPS-Signal
-          können wir sie wiederfinden und die Messungen sowie Aufnahmen
-          auswerten.
-        </p>
-      </div>
+      <h2>Wie wir es machen</h2>
+      <p class="small-text">
+        Wir verwenden einen mit Helium gefüllten Ballon, an dem eine kleine Box
+        befestigt ist. In dieser Box befinden sich Sensoren, Kameras und ein
+        GPS-Tracker. Während des Aufstiegs zeichnen die Geräte Daten und Bilder
+        auf. Sobald der Ballon in großer Höhe platzt, sinkt die Box mithilfe
+        eines Fallschirms zurück auf die Erde. Mit dem GPS-Signal können wir sie
+        wiederfinden und die Messungen sowie Aufnahmen auswerten.
+      </p>
 
-      <div class="text3">
-        <h2>Was uns motiviert</h2>
-        <p class="small-text">
-          Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
-          Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
-          aufgezeichnet, außerdem werden Bilder und Videos gemacht. Nach der
-          Landung werten wir die Ergebnisse aus und dokumentieren den gesamten
-          Ablauf des Projekts. So verbinden wir naturwissenschaftliches Arbeiten
-          mit praktischer Durchführung.
-        </p>
-      </div>
+      <h2>Was uns motiviert</h2>
+      <p class="small-text">
+        Wir wollen mit unserem Projekt zeigen, dass Wissenschaft greifbar ist.
+        Der Stratosphärenflug ermöglicht uns, physikalische und chemische
+        Prozesse nicht nur theoretisch, sondern praktisch zu erleben – und das
+        mit unserer eigenen Technik.
+      </p>
     </div>
 
     <div id="donateModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Wie können Sie uns unterstützen?</h2>
-        <img src="TS-Logo-blau.png" alt="Logo" style="width:180px; margin:20px auto; display:block;" />
+        <img
+          src="TS-Logo-blau.png"
+          alt="Logo"
+          style="width:180px; margin:20px auto; display:block;"
+        />
         <p>
           Verein Freunde der Tellkampfschule e.V.<br />
           Altenbekener Damm 83<br />
@@ -283,9 +294,14 @@
           <h3>Kontakt</h3>
           <p>
             <strong>Email:</strong>
-            <a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a>
+            <a href="mailto:stratotask@tellkampfschule.eu"
+              >stratotask@tellkampfschule.eu</a
+            >
           </p>
-          <p><strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover</p>
+          <p>
+            <strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173
+            Hannover
+          </p>
         </div>
 
         <div style="flex: 1; min-width: 250px;">
@@ -313,12 +329,13 @@
         document.getElementById("donateModal").style.display = "none";
       }
       window.onclick = function (event) {
-        let modal = document.getElementById("donateModal");
+        const modal = document.getElementById("donateModal");
         if (event.target === modal) closeModal();
       };
     </script>
   </body>
 </html>
+
 
 
 
