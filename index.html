@@ -5,23 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spendenaufruf-StratoTask</title>
     <style>
+ 
+      :root{ --overlay-rgba: rgba(0,0,0,0.6); }
       body {
         margin: 0;
         line-height: 1.6;
         color: #ffffff;
-        background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center fixed;
-        background-size: cover;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
       }
 
-      body::before {
-        content: "";
+    
+      .bg {
         position: fixed;
-        top: 0;
-        left: 0;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .bg img {
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6);
+        object-fit: cover;      
+        object-position: center;
+        display: block;
+      }
+
+     
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--overlay-rgba);
         z-index: -1;
+        pointer-events: none;
       }
 
       .container {
@@ -29,6 +45,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 20px 40px;
+        z-index: 1; /* Inhalt über Overlay */
+        position: relative;
       }
 
       .TS-Logo {
@@ -48,6 +66,7 @@
         background: rgb(36, 36, 36);
         transition: 0.3s;
       }
+      .donate { margin-right: 40px; }
 
       .headline {
         text-align: center;
@@ -59,21 +78,13 @@
         margin: 200px auto 0 auto;
         font-size: 45px;
         max-width: 1680px;
+        z-index: 1;
+        position: relative;
       }
 
-      .text h2 {
-        margin-top: 300px;
-        margin-bottom: 5px;
-      }
-
-      .text p {
-        margin-bottom: 80px;
-      }
-
-      .small-text {
-        line-height: 1.2;
-        font-size: 35px;
-      }
+      .text h2 { margin-top: 300px; margin-bottom: 5px; }
+      .text p { margin-bottom: 80px; }
+      .small-text { line-height: 1.2; font-size: 35px; }
 
       footer {
         width: 100%;
@@ -81,24 +92,13 @@
         color: #fff;
         padding: 60px 20px 30px;
         margin-top: 100px;
+        z-index: 1;
+        position: relative;
       }
 
-      footer h3 {
-        margin-bottom: 15px;
-        font-size: 20px;
-      }
-
-      footer p,
-      footer a {
-        font-size: 16px;
-        line-height: 1.4;
-        color: #ddd;
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        color: #fff;
-      }
+      footer h3 { margin-bottom: 15px; font-size: 20px; }
+      footer p, footer a { font-size: 16px; line-height: 1.4; color: #ddd; text-decoration: none; }
+      footer a:hover { color: #fff; }
 
       footer .footer-container {
         display: flex;
@@ -148,109 +148,57 @@
         font-weight: bold;
         cursor: pointer;
       }
+      .close:hover { color: #000; }
 
-      .close:hover {
-        color: #000;
-      }
 
       @media (max-width: 1024px) {
-        .headline {
-          font-size: 42px;
-        }
-        .text {
-          font-size: 30px;
-          margin: 120px auto 0 auto;
-          padding: 0 20px;
-        }
-        .small-text {
-          font-size: 25px;
-        }
-        .donate button {
-          font-size: 1.2em;
-        }
-        footer .footer-container {
-          gap: 20px;
-        }
+        .headline { font-size: 42px; }
+        .text { font-size: 30px; margin: 120px auto 0 auto; padding: 0 20px; }
+        .small-text { font-size: 25px; }
+        .donate button { font-size: 1.2em; }
+        footer .footer-container { gap: 20px; }
       }
 
-      @media (max-width: 768px) {
-        body {
-          background-attachment: scroll;
-          background-size: contain;
-          background-position: top center;
-        }
 
+      @media (max-width: 768px) {
         .container {
           flex-direction: column;
           text-align: center;
           padding: 15px 20px;
         }
 
-        .TS-Logo {
-          width: 25%;
-        }
+        .TS-Logo { width: 25%; }
+        .headline { font-size: 32px; margin-top: 15px; }
+        .donate { margin-top: 10px; }
+        .donate button { font-size: 1.1em; padding: 8px 12px; }
 
-        .headline {
-          font-size: 32px;
-          margin-top: 15px;
-        }
+        .text { margin: 60px auto 0 auto; font-size: 22px; padding: 0 15px; }
+        .text h2 { margin-top: 100px; font-size: 26px; }
+        .small-text { font-size: 18px; line-height: 1.4; }
 
-        .donate {
-          margin-top: 10px;
-        }
+        footer { padding: 40px 15px; }
+        footer .footer-container { flex-direction: column; align-items: center; text-align: center; }
+        footer img { max-width: 90%; margin-top: 10px; }
+        footer h3 { font-size: 18px; }
+        footer p { font-size: 14px; }
+        footer .footer-bottom { font-size: 13px; margin-top: 30px; }
 
-        .donate button {
-          font-size: 1.1em;
-          padding: 8px 12px;
-        }
+   
+        .bg img { object-position: 50% 20%; }
+      }
 
-        .text {
-          margin: 60px auto 0 auto;
-          font-size: 22px;
-          padding: 0 15px;
-        }
-
-        .text h2 {
-          margin-top: 100px;
-          font-size: 26px;
-        }
-
-        .small-text {
-          font-size: 18px;
-          line-height: 1.4;
-        }
-
-        footer {
-          padding: 40px 15px;
-        }
-
-        footer .footer-container {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-
-        footer img {
-          max-width: 90%;
-          margin-top: 10px;
-        }
-
-        footer h3 {
-          font-size: 18px;
-        }
-
-        footer p {
-          font-size: 14px;
-        }
-
-        footer .footer-bottom {
-          font-size: 13px;
-          margin-top: 30px;
-        }
+      @media (max-width: 420px) {
+        .headline { font-size: 28px; }
+        .text { font-size: 18px; margin: 50px auto 0 auto; }
       }
     </style>
   </head>
   <body>
+    <div class="bg">
+      <img src="ebeab70a-9916-4722-a756-43952ef95e49.JPG" alt="Hintergrund" />
+    </div>
+    <div class="overlay"></div>
+
     <div class="container">
       <img class="TS-Logo" src="TS-Logo.png" alt="Logo" />
       <h1 class="headline">Strato-Task</h1>
@@ -337,9 +285,7 @@
             <strong>Email:</strong>
             <a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a>
           </p>
-          <p>
-            <strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover
-          </p>
+          <p><strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover</p>
         </div>
 
         <div style="flex: 1; min-width: 250px;">
@@ -363,20 +309,17 @@
       function openModal() {
         document.getElementById("donateModal").style.display = "block";
       }
-
       function closeModal() {
         document.getElementById("donateModal").style.display = "none";
       }
-
       window.onclick = function (event) {
         let modal = document.getElementById("donateModal");
-        if (event.target === modal) {
-          closeModal();
-        }
+        if (event.target === modal) closeModal();
       };
     </script>
   </body>
 </html>
+
 
 
 
