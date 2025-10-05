@@ -9,8 +9,7 @@
         margin: 0;
         line-height: 1.6;
         color: #ffffff;
-        background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG)
-          no-repeat center center fixed;
+        background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center fixed;
         background-size: cover;
       }
 
@@ -158,6 +157,78 @@
       .close:hover {
         color: #000;
       }
+
+      @media (max-width: 1024px) {
+        .headline {
+          font-size: 40px;
+        }
+        .text {
+          font-size: 30px;
+          margin: 120px auto 0 auto;
+          padding: 0 20px;
+        }
+        .text h2 {
+          margin-top: 200px;
+        }
+        .small-text {
+          font-size: 25px;
+        }
+        .donate button {
+          font-size: 1.2em;
+          padding: 8px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          background-attachment: scroll;
+          background-size: cover;
+          background-position: center center;
+        }
+        .headline {
+          font-size: 32px;
+          margin-top: 20px;
+        }
+        .text {
+          font-size: 22px;
+          margin: 80px auto 0 auto;
+          padding: 0 15px;
+        }
+        .text h2 {
+          margin-top: 120px;
+        }
+        .small-text {
+          font-size: 18px;
+          line-height: 1.4;
+        }
+        .TS-Logo {
+          width: 20%;
+        }
+        .container {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .donate {
+          margin: 20px 0 0 0;
+        }
+        footer {
+          padding: 40px 15px;
+        }
+        footer .footer-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        footer img {
+          max-width: 90%;
+        }
+        footer h3 {
+          font-size: 18px;
+        }
+        footer p {
+          font-size: 14px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -208,19 +279,11 @@
       </div>
     </div>
 
-    <!-- Modal-Fenster -->
     <div id="donateModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Wie können Sie uns unterstützen?</h2>
-
-        <!-- Logo mittig -->
-        <img
-          src="TS-Logo-blau.png"
-          alt="Logo"
-          style="width:180px; margin:20px auto; display:block;"
-        />
-
+        <img src="TS-Logo-blau.png" alt="Logo" style="width:180px; margin:20px auto; display:block;" />
         <p>
           Verein Freunde der Tellkampfschule e.V.<br />
           Altenbekener Damm 83<br />
@@ -253,13 +316,10 @@
           <h3>Kontakt</h3>
           <p>
             <strong>Email:</strong>
-            <a href="mailto:stratotask@tellkampfschule.eu"
-              >stratotask@tellkampfschule.eu</a
-            >
+            <a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a>
           </p>
           <p>
-            <strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173
-            Hannover
+            <strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover
           </p>
         </div>
 
@@ -276,7 +336,7 @@
 
       <div class="footer-bottom">
         © 2025 Strato-Task - Tellkampfschule Hannover <br />
-        Erstellt von Leander; Geschrieben von Yul und Tom
+        Erstellt von Leander, Yul und Tom
       </div>
     </footer>
 
@@ -297,6 +357,6 @@
       };
     </script>
   </body>
-
 </html>
+
 
