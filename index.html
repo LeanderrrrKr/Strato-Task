@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,12 +25,10 @@
       }
 
       .container {
-        right: 32px;
-        left: 32px;
-        top: 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 20px 40px;
       }
 
       .TS-Logo {
@@ -49,9 +47,6 @@
         font-family: Georgia, "Times New Roman", Times, serif;
         background: rgb(36, 36, 36);
         transition: 0.3s;
-      }
-      .donate {
-        margin-right: 40px;
       }
 
       .headline {
@@ -160,80 +155,104 @@
 
       @media (max-width: 1024px) {
         .headline {
-          font-size: 40px;
+          font-size: 42px;
         }
         .text {
           font-size: 30px;
           margin: 120px auto 0 auto;
           padding: 0 20px;
         }
-        .text h2 {
-          margin-top: 200px;
-        }
         .small-text {
           font-size: 25px;
         }
         .donate button {
           font-size: 1.2em;
-          padding: 8px 12px;
+        }
+        footer .footer-container {
+          gap: 20px;
         }
       }
 
       @media (max-width: 768px) {
         body {
           background-attachment: scroll;
-          background-size: cover;
-          background-position: center center;
+          background-size: contain;
+          background-position: top center;
         }
+
+        .container {
+          flex-direction: column;
+          text-align: center;
+          padding: 15px 20px;
+        }
+
+        .TS-Logo {
+          width: 25%;
+        }
+
         .headline {
           font-size: 32px;
-          margin-top: 20px;
+          margin-top: 15px;
         }
+
+        .donate {
+          margin-top: 10px;
+        }
+
+        .donate button {
+          font-size: 1.1em;
+          padding: 8px 12px;
+        }
+
         .text {
+          margin: 60px auto 0 auto;
           font-size: 22px;
-          margin: 80px auto 0 auto;
           padding: 0 15px;
         }
+
         .text h2 {
-          margin-top: 120px;
+          margin-top: 100px;
+          font-size: 26px;
         }
+
         .small-text {
           font-size: 18px;
           line-height: 1.4;
         }
-        .TS-Logo {
-          width: 20%;
+
+        footer {
+          padding: 40px 15px;
         }
-        .container {
+
+        footer .footer-container {
           flex-direction: column;
           align-items: center;
           text-align: center;
         }
-        .donate {
-          margin: 20px 0 0 0;
-        }
-        footer {
-          padding: 40px 15px;
-        }
-        footer .footer-container {
-          flex-direction: column;
-          align-items: center;
-        }
+
         footer img {
           max-width: 90%;
+          margin-top: 10px;
         }
+
         footer h3 {
           font-size: 18px;
         }
+
         footer p {
           font-size: 14px;
+        }
+
+        footer .footer-bottom {
+          font-size: 13px;
+          margin-top: 30px;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <img class="TS-Logo" src="TS-Logo.png" alt="" />
+      <img class="TS-Logo" src="TS-Logo.png" alt="Logo" />
       <h1 class="headline">Strato-Task</h1>
       <div class="donate">
         <button onclick="openModal()">Spenden</button>
@@ -242,7 +261,7 @@
 
     <div class="text">
       <div class="text1">
-        <h2 class="headline-text">Was wir machen</h2>
+        <h2>Was wir machen</h2>
         <p class="small-text">
           Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
           Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
@@ -254,7 +273,7 @@
       </div>
 
       <div class="text2">
-        <h2 class="headline-text">Wie wir es machen</h2>
+        <h2>Wie wir es machen</h2>
         <p class="small-text">
           Wir verwenden einen mit Helium gefüllten Ballon, an dem eine kleine
           Box befestigt ist. In dieser Box befinden sich Sensoren, Kameras und
@@ -267,7 +286,7 @@
       </div>
 
       <div class="text3">
-        <h2 class="headline-text">Was uns motiviert</h2>
+        <h2>Was uns motiviert</h2>
         <p class="small-text">
           Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
           Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
@@ -358,5 +377,6 @@
     </script>
   </body>
 </html>
+
 
 
