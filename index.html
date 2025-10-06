@@ -12,7 +12,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding-bottom: 80px; /* Platz für fixierten Footer */
+      padding-bottom: 120px; /* Platz für fixierten Footer */
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
       background: #000;
@@ -133,40 +133,41 @@
       width: 100%;
       background: var(--accent-dark);
       color: var(--text);
-      padding: 15px 20px;
+      padding: 20px 10px 10px;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
       z-index: 999;
       font-size: 14px;
+    }
+    .footer-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 60px;
       flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    footer .footer-left, footer .footer-right {
+    .footer-container > div {
       min-width: 250px;
+      text-align: center;
     }
-    footer a {
+    .footer-bottom {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .footer-container a {
       color: #ddd;
       text-decoration: none;
     }
-    footer a:hover {
+    .footer-container a:hover {
       color: #fff;
     }
 
     @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        text-align: center;
-      }
-      .donate {
-        margin: 10px 0 0;
-      }
-      footer {
-        flex-direction: column;
-        text-align: center;
-      }
-      footer .footer-left, footer .footer-right {
-        margin-bottom: 10px;
-      }
+      .container { flex-direction: column; text-align: center; }
+      .donate { margin: 10px 0 0; }
+      .footer-container { flex-direction: column; }
     }
   </style>
 </head>
@@ -191,7 +192,9 @@
   </div>
 
   <!-- Sidebar -->
-  <div id="siteSidebar" style="position: fixed; left: 0; top: 0; height: 100%; width: 0; background: #222; padding-top: 60px; z-index: 2500; overflow-x: hidden; transition: 0.3s; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.7);">
+  <div id="siteSidebar"
+    style="position: fixed; left: 0; top: 0; height: 100%; width: 0; background: #222; padding-top: 60px; z-index: 2500; overflow-x: hidden; transition: 0.3s; box-shadow: 2px 0 8px rgba(0,0,0,0.7);"
+  >
     <a href="javascript:void(0)" onclick="closeSidebar()" style="position: absolute; right: 18px; top: 12px; font-size: 36px; color: #fff; text-decoration: none;">&times;</a>
     <a href="index.html" style="display: block; padding: 15px 30px; color: #ddd; text-decoration: none; font-size: 18px;">Home</a>
     <a href="was-wir-machen.html" style="display: block; padding: 15px 30px; color: #ddd; text-decoration: none; font-size: 18px;">Was wir machen</a>
@@ -201,41 +204,50 @@
   </div>
 
   <!-- Spenden Modal -->
-  <div id="donateModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="donateTitle">
+  <div id="donateModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="donateTitle" style="display: none;">
     <div class="modal-content">
       <span class="close" onclick="closeModal()" aria-label="Schließen">&times;</span>
       <h2 id="donateTitle">Wie können Sie uns unterstützen?</h2>
       <img src="TS-Logo-blau.png" alt="Logo" style="width:180px; margin:20px auto; display:block;" />
       <p>
-        Verein Freunde der Tellkampfschule e.V.<br/>
-        Altenbekener Damm 83<br/>
-        30173 Hannover<br/>
-        Tel.: 0511/168-46717
+      Verein Freunde der Tellkampfschule e.V.<br />
+      Altenbekener Damm 83<br />
+      30173 Hannover<br />
+      Tel.: 0511/168-46717
       </p>
       <p>
-        <strong>Spendenkonto:</strong><br/>
-        Sparkasse Hannover<br/>
-        IBAN: DE86 2505 0180 0910 4309 50<br/>
-        BIC: SPKHDE2HXXX
+      <strong>Spendenkonto:</strong><br />
+      Sparkasse Hannover<br />
+      IBAN: DE86 2505 0180 0910 4309 50<br />
+      BIC: SPKHDE2HXXX
       </p>
     </div>
   </div>
 
   <footer>
-    <div class="footer-left">
-      <h3>Kontakt</h3>
-      <p><a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
+    <div class="footer-container">
+      <div>
+        <h3>Kontakt</h3>
+        <p><a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
+      </div>
+      <div>
+        <h3>Standort</h3>
+        <p>Altenbekener Damm 83, 30173 Hannover</p>
+        <img
+          src="data=HQ2wN3CFArkQyZVOTYrG2-3aBCzm44-Jve8SyDNsAMntbxUBYg39YddbuMwGPqfCOPOkAkrcgaVVa14opgmqlFIGiYl1oCJ90Dhfosm8_BA_gZ9dB75oesRIdZwUJ-Cql_vD6e7hCANNsqedYHUyOaAUhn1ocGYZjvz6yfhlGMBi66EFQQ&w=241&h=160.png"
+          alt="Google Maps Standort"
+          style="width:100%; max-width:300px; border-radius:8px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); margin-top:10px;"
+        />
+      </div>
     </div>
-    <div class="footer-right">
-      <h3>Standort</h3>
-      <p>Altenbekener Damm 83, 30173 Hannover</p>
-    </div>
+    <div class="footer-bottom">© 2025 Strato-Task - Tellkampfschule Hannover<br />Erstellt von Leander, Yul und Tom</div>
   </footer>
 
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById('siteSidebar');
-      sidebar.style.width = sidebar.style.width && sidebar.style.width !== '0px' ? '0' : '270px';
+      sidebar.style.width =
+        sidebar.style.width && sidebar.style.width !== '0px' ? '0' : '270px';
     }
     function closeSidebar() {
       document.getElementById('siteSidebar').style.width = '0';
@@ -246,11 +258,11 @@
     function closeModal() {
       document.getElementById('donateModal').style.display = 'none';
     }
-    window.onclick = function(event) {
+    window.onclick = function (event) {
       const modal = document.getElementById('donateModal');
       if (event.target === modal) closeModal();
     };
-    document.querySelector('.hamburger').addEventListener('keydown', function(e) {
+    document.querySelector('.hamburger').addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         toggleSidebar();
         e.preventDefault();
@@ -259,3 +271,4 @@
   </script>
 </body>
 </html>
+
