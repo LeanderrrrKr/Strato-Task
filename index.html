@@ -1,309 +1,374 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Strato-Task - Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spendenaufruf-StratoTask</title>
   <style>
-    :root {
-      --accent-dark: #111;
-      --text: #fff;
-    }
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding-bottom: 165px; /* Platz für fixierten Footer */
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #000;
-      overflow-x: hidden;
-      font-size: 16px;
+      line-height: 1.6;
+      color: #ffffff;
+      background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center fixed;
+      background-size: cover;
+      font-family: Georgia, "Times New Roman", Times, serif;
     }
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      background: url("ebeab70a-9916-4722-a756-43952ef95e49.JPG") center center / cover no-repeat;
-      z-index: -2;
-    }
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
-    .hamburger {
-      position: fixed;
-      top: 20px;
-      left: 25px;
-      z-index: 2000;
-      font-size: 30px;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-    }
-    .hamburger:focus {
-      outline: 2px solid #fff;
+    .container {
+      right: 32px;
+      left: 32px;
+      top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .TS-Logo {
-      position: absolute;
-      top: 28px;
-      left: 65px;
-      width: 54px;
+      width: 8%;
       height: auto;
-      z-index: 1000;
-      filter: drop-shadow(0 0 4px #222);
     }
     .headline {
-      font-size: clamp(38px, 7vw, 60px);
+      font-size: clamp(24px, 5vw, 60px);
       font-weight: bold;
-      text-align: center;
-      margin-top: 55px;
-      letter-spacing: 1px;
-    }
-    .donate {
-      position: fixed;
-      top: 30px;
-      right: 45px;
-      z-index: 2100;
+      margin: 0;
     }
     .donate button {
       border: none;
-      padding: 7px 23px;
-      font-size: 20px;
+      padding: 10px 15px;
+      font-size: 1.5em;
       border-radius: 8px;
       cursor: pointer;
-      color: #fff;
+      color: #ffffff;
       font-weight: bold;
-      font-family: Georgia, "Times New Roman", Times, serif;
-      background: rgb(36,36,36);
-      transition: 0.25s;
-      box-shadow: 0 2px 12px rgba(36,36,36,0.2);
+      background: rgb(36, 36, 36);
+      transition: 0.3s;
     }
-    .donate button:hover { background: #444; }
-    .text {
-      max-width: 850px;
-      margin: 110px auto 0 80px;
+    .donate {
+      margin-right: 40px;
+    }
+    .separator {
+      width: 70%;
+      margin: 40px auto 60px auto;
+      border-top: 3px solid rgba(255, 255, 255, 0.4);
+      border-radius: 3px;
+    }
+    .about-container {
+      max-width: 900px;
+      margin: 120px auto 0 auto;
       padding: 0 20px;
+      text-align: center;
+      color: #ddd;
+      font-size: 24px;
+      line-height: 1.6;
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+    .about-container h3 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .text-container {
+      max-width: 900px;
+      margin: 0 auto 0 auto;
+      text-align: center;
+      position: relative;
+      padding: 0 20px 40px 20px;
+    }
+    .text-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 40px 50px;
+      display: none;
+      color: #fff;
+      font-size: 35px;
+      line-height: 1.3;
+      transition: opacity 0.3s ease;
+    }
+    .text-block.active {
+      display: block;
+    }
+    .text-block h2 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    .nav-dots {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-dot {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .nav-dot.active {
+      background-color: #ffffff;
+      border-color: #36a2f5;
+      box-shadow: 0 0 10px #36a2f5;
+    }
+    /* Wetterballon-Block */
+    .weather-image-section {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      text-align: center;
+    }
+    .weather-image-section h3 {
+      font-size: 36px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+    .weather-image-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 16px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.45);
+      background: #fff;
+    }
+    footer {
+      width: 100%;
+      background: #111;
+      color: #fff;
+      padding: 60px 20px 30px;
+      margin-top: 0;
+    }
+    footer h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    footer p,
+    footer a {
+      font-size: 16px;
+      line-height: 1.4;
+      color: #ddd;
+      text-decoration: none;
+    }
+    footer a:hover {
       color: #fff;
     }
-    .text h2 {
-      font-size: 32px;
-      margin-bottom: 18px;
-      margin-top: 16px;
-      font-weight: bold;
+    footer .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 40px;
     }
-    .small-text {
-      font-size: 20px;
-      line-height: 1.5;
-      color: #eee;
-      margin-top: 0;
-      margin-bottom: 80px;
+    footer .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.6;
     }
-    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
-      inset: 0;
-      background-color: rgba(0,0,0,0.6);
-      z-index: 1001;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
     }
     .modal-content {
-      background-color: #ccc;
+      background-color: #cccccc;
       margin: 10% auto;
       padding: 30px;
       border-radius: 12px;
-      width: 90%;
+      width: 80%;
       max-width: 600px;
       color: #000;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
     .close {
-      color: #000;
+      color: #000000;
       float: right;
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
     }
     .close:hover {
-      color: #333;
-    }
-
-    /* Sidebar Styles */
-    #siteSidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: #222;
-      padding-top: 60px;
-      z-index: 2500;
-      overflow-x: hidden;
-      transition: 0.3s;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.7);
-    }
-    #siteSidebar a { 
-      display: block; 
-      padding: 15px 30px; 
-      color: #ddd; 
-      text-decoration: none; 
-      font-size: 18px; 
-      transition: 0.3s;
-    }
-    #siteSidebar a:hover { background: #444; color: white; }
-    #siteSidebar .closebtn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 36px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    /* Footer Styles */
-    footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background: #111;
-      color: #fff;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
-      z-index: 999;
-      font-size: 14px;
-    }
-    .footer-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 46px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 18px 0 0 0;
-      flex-wrap: nowrap;
-    }
-    .footer-container > div {
-      min-width: 210px;
-      text-align: center;
-    }
-    .footer-container h3 {
-      margin-bottom: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 0;
-    }
-    .footer-container p {
-      margin: 0 0 7px 0;
-    }
-    .footer-container a {
-      color: #ddd;
-      text-decoration: none;
-    }
-    .footer-container a:hover { color: #fff; }
-    .footer-bottom {
-      text-align: center;
-      margin: 15px 0 10px 0;
-      font-size: 14px;
-      color: #aaa;
-    }
-    .footer-container img {
-      width: 260px;
-      max-width:90vw;
-      border-radius: 9px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.35);
-      margin-top:12px;
-    }
-    @media (max-width: 900px) {
-      .footer-container { gap: 24px; }
-      .footer-container img { width: 180px; }
-    }
-    @media (max-width: 700px) {
-      .footer-container { flex-direction: column !important; gap: 18px !important; align-items:center; }
-      .footer-container img { width: 90vw; }
-      body { padding-bottom: 220px; }
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="hamburger" onclick="toggleSidebar()" tabindex="0" aria-label="Menü öffnen">&#9776;</div>
-  <img class="TS-Logo" src="TS-Logo.png" alt="Logo"/>
-  <div class="headline">Strato-Task</div>
-  <div class="donate">
-    <button onclick="openModal()">Spenden</button>
-  </div>
-  <div class="text">
-    <h2>Über uns</h2>
-    <p class="small-text">
-      Wir sind das Seminarfach der 12. Klasse an der Tellkampfschule Hannover. Unser Projekt „Strato-Task“ verbindet naturwissenschaftliches Arbeiten mit praktischer Durchführung: Wir starten einen Ballon in die Stratosphäre, sammeln Messdaten und werten diese aus.
-    </p>
-  </div>
-  <!-- Sidebar -->
-  <nav id="siteSidebar">
-    <span class="closebtn" onclick="closeSidebar()" aria-label="Menü schließen">&times;</span>
-    <a href="index.html">Home</a>
-    <a href="was-wir-machen.html">Was wir machen</a>
-    <a href="wie-wir-vorgehen.html">Wie wir vorgehen</a>
-    <a href="was-uns-motiviert.html">Was uns motiviert</a>
-    <a href="grundaufbau-sonde.html">Grundaufbau der Sonde</a>
-  </nav>
-  <!-- Spenden Modal -->
-  <div id="donateModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="donateTitle">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" aria-label="Schließen">&times;</span>
-      <h2 id="donateTitle">Wie können Sie uns unterstützen?</h2>
-      <img src="TS-Logo-blau.png" alt="Logo" style="width:180px; margin:20px auto; display:block;" />
-      <p>Verein Freunde der Tellkampfschule e.V.<br />Altenbekener Damm 83<br />30173 Hannover<br />Tel.: 0511/168-46717</p>
-      <p><strong>Spendenkonto:</strong><br />Sparkasse Hannover<br />IBAN: DE86 2505 0180 0910 4309 50<br />BIC: SPKHDE2HXXX</p>
+  <div class="container">
+    <img class="TS-Logo" src="TS-Logo.png" alt="Logo" />
+    <h1 class="headline">Strato-Task</h1>
+    <div class="donate">
+      <button onclick="openModal()">Spenden</button>
     </div>
   </div>
+
+  <div class="about-container">
+    <h3>Wer wir sind</h3>
+    <p>
+      Wir sind das Seminarfach der 12. Klasse an der Tellkampfschule.
+      Unser Projekt „Strato-Task“ verbindet naturwissenschaftliches
+      Arbeiten mit praktischer Durchführung, indem wir einen Ballon in die
+      Stratosphäre starten, Messdaten sammeln und die Ergebnisse
+      dokumentieren.
+    </p>
+  </div>
+
+  <div class="separator"></div>
+
+  <div class="text-container" aria-live="polite" aria-atomic="true">
+    <div id="block1" class="text-block active">
+      <h2>Was wir machen</h2>
+      <p>
+        Wir starten einen Ballon, der bis in die Stratosphäre aufsteigt.
+        Während des Flugs werden Daten wie Temperatur, Luftdruck und Höhe
+        aufgezeichnet, außerdem werden Bilder und Videos gemacht. Nach der
+        Landung werten wir die Ergebnisse aus und dokumentieren den gesamten
+        Ablauf des Projekts. So verbinden wir naturwissenschaftliches Arbeiten
+        mit praktischer Durchführung.
+      </p>
+    </div>
+
+    <div id="block2" class="text-block">
+      <h2>Wie wir vorgehen</h2>
+      <p>
+        Wir verwenden einen mit Helium gefüllten Ballon, an dem eine kleine
+        Box befestigt ist. In dieser Box befinden sich Sensoren, Kameras und
+        ein GPS-Tracker. Während des Aufstiegs zeichnen die Geräte Daten und
+        Bilder auf. Sobald der Ballon in großer Höhe platzt, sinkt die Box
+        mithilfe eines Fallschirms zurück auf die Erde. Mit dem GPS-Signal
+        können wir sie wiederfinden und die Messungen sowie Aufnahmen
+        auswerten.
+      </p>
+    </div>
+
+    <div id="block3" class="text-block">
+      <h2>Was uns motiviert</h2>
+      <p>
+        Wir sind ein Seminarfach, das einen Wetterballon in die Stratosphäre schicken möchte. Das motiviert uns, weil wir etwas Eigenes umsetzen, echte Forschungsarbeit leisten und als Team zusammenarbeiten können. Dabei messen wir Wetterdaten wie Temperatur und Luftfeuchtigkeit, werten sie wissenschaftlich aus und lernen so praxisnah. Außerdem freuen wir uns darauf, unsere Ergebnisse in der Facharbeit zu präsentieren und dabei wichtige Fähigkeiten im Forschen und Präsentieren zu trainieren.
+      </p>
+    </div>
+
+    <!-- Navigation direkt unter den Textmodulen -->
+    <div class="nav-dots" role="tablist" aria-label="Textabschnitt Navigation">
+      <div class="nav-dot active" role="tab" tabindex="0" aria-selected="true" aria-controls="block1" id="tab1" data-target="block1"></div>
+      <div class="nav-dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="block2" id="tab2" data-target="block2"></div>
+      <div class="nav-dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="block3" id="tab3" data-target="block3"></div>
+    </div>
+  </div>
+
+  <!-- Wetterballonbereich mit Trenner über Überschrift -->
+  <div class="weather-image-section">
+    <div class="separator"></div>
+    <h3>Grundaufbau des Wetterballons</h3>
+    <img src="IMG_1712.jpg" alt="Skizze zum Aufbau eines Wetterballons" />
+  </div>
+
+  <div id="donateModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()" aria-label="Schließen">&times;</span>
+      <h2 id="modalTitle">Wie können Sie uns unterstützen?</h2>
+      <img src="TS-Logo-blau.png" style="width:180px; margin:20px auto; display:block;" alt="Logo" />
+      <p>Verein Freunde der Tellkampfschule e.V.<br/>Altenbekener Damm 83<br/>30173 Hannover<br/>Tel.: 0511/168-46717</p>
+      <p><strong>Spendenkonto:</strong><br/>Sparkasse Hannover<br/>IBAN: DE86 2505 0180 0910 4309 50<br/>BIC: SPKHDE2HXXX</p>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-container">
-      <div>
+      <div style="flex: 1; min-width: 250px;">
+        <h3>Kontakt</h3>
+        <p><strong>Email:</strong> <a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
+        <p><strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover</p>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
         <h3>Standort</h3>
         <p>Altenbekener Damm 83, 30173 Hannover</p>
-        <img src="data=HQ2wN3CFArkQyZVOTYrG2-3aBCzm44-Jve8SyDNsAMntbxUBYg39YddbuMwGPqfCOPOkAkrcgaVVa14opgmqlFIGiYl1oCJ90Dhfosm8_BA_gZ9dB75oesRIdZwUJ-Cql_vD6e7hCANNsqedYHUyOaAUhn1ocGYZjvz6yfhlGMBi66EFQQ&w=241&h=160.png"
-          alt="Google Maps Standort"
-        />
-      </div>
-      <div>
-        <h3>Kontakt</h3>
-        <p><a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
+        <img src="data=HQ2wN3CFArkQyZVOTYrG2-3aBCzm44-Jve8SyDNsAMntbxUBYg39YddbuMwGPqfCOPOkAkrcgaVVa14opgmqlFIGiYl1oCJ90Dhfosm8_BA_gZ9dB75oesRIdZwUJ-Cql_vD6e7hCANNsqedYHUyOaAUhn1ocGYZjvz6yfhlGMBi66EFQQ&w=241&h=160.png" alt="Google Maps Standort" style="width:100%; max-width:300px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.3);" />
       </div>
     </div>
     <div class="footer-bottom">
-      © 2025 Strato-Task - Tellkampfschule Hannover<br />
-      Erstellt von Leander, Yul und Tom
+      © 2025 Strato-Task - Tellkampfschule Hannover<br/>
+      Erstellt von Leander; Geschrieben von Yul und Tom
     </div>
   </footer>
+
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('siteSidebar');
-      sidebar.style.width =
-        sidebar.style.width && sidebar.style.width !== '0px' ? '0' : '270px';
-    }
-    function closeSidebar() {
-      document.getElementById('siteSidebar').style.width = '0';
-    }
-    function openModal() {
-      document.getElementById('donateModal').style.display = 'block';
-    }
-    function closeModal() {
-      document.getElementById('donateModal').style.display = 'none';
-    }
-    window.onclick = function (event) {
-      const modal = document.getElementById('donateModal');
-      if (event.target === modal) closeModal();
-    };
-    document.querySelector('.hamburger').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        toggleSidebar();
-        e.preventDefault();
-      }
+    document.addEventListener("DOMContentLoaded", () => {
+      const dots = document.querySelectorAll('.nav-dot');
+      const blocks = document.querySelectorAll('.text-block');
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          dots.forEach(d => {
+            d.classList.remove('active');
+            d.setAttribute('aria-selected', 'false');
+            d.setAttribute('tabindex', '-1');
+          });
+          blocks.forEach(b => b.classList.remove('active'));
+
+          dot.classList.add('active');
+          dot.setAttribute('aria-selected', 'true');
+          dot.setAttribute('tabindex', '0');
+
+          const target = dot.getAttribute('data-target');
+          const targetBlock = document.getElementById(target);
+
+          if (targetBlock) {
+            targetBlock.classList.add('active');
+          }
+          dot.focus();
+        });
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const nextIndex = (index + 1) % dots.length;
+            dots[nextIndex].click();
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const prevIndex = (index - 1 + dots.length) % dots.length;
+            dots[prevIndex].click();
+          }
+        });
+      });
     });
+
+    function openModal() {
+      document.getElementById("donateModal").style.display = "block";
+      document.getElementById("donateModal").setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      document.getElementById("donateModal").style.display = "none";
+      document.getElementById("donateModal").setAttribute("aria-hidden", "true");
+    }
+
+    window.onclick = function(event) {
+      let modal = document.getElementById("donateModal");
+      if(event.target === modal) {
+        closeModal();
+      }
+    };
   </script>
 </body>
 </html>
+
 
