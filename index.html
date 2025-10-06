@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Strato-Task - Home</title>
   <style>
-    :root{
+    :root {
       --accent-dark: #111;
-      --panel: rgba(36,36,36,0.85);
       --text: #fff;
     }
-    *{box-sizing:border-box;}
+    * { box-sizing: border-box; }
     body {
       margin: 0;
+      padding-bottom: 80px; /* Platz für fixierten Footer */
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
       background: #000;
       overflow-x: hidden;
+      font-size: 16px;
     }
     body::before {
       content: "";
@@ -93,6 +94,7 @@
       line-height: 1.5;
       color: #eee;
     }
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -122,38 +124,34 @@
     .close:hover {
       color: #333;
     }
+
+    /* Footer fixiert */
     footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       background: var(--accent-dark);
       color: var(--text);
-      padding: 40px 20px 20px;
-      margin-top: 60px;
+      padding: 15px 20px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+      z-index: 999;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
-    footer h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+    footer .footer-left, footer .footer-right {
+      min-width: 250px;
     }
-    footer p, footer a {
-      font-size: 16px;
+    footer a {
       color: #ddd;
       text-decoration: none;
     }
     footer a:hover {
       color: #fff;
     }
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 40px;
-    }
-    .footer-bottom {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #aaa;
-    }
+
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
@@ -162,10 +160,12 @@
       .donate {
         margin: 10px 0 0;
       }
-      .footer-container {
+      footer {
         flex-direction: column;
-        align-items: center;
         text-align: center;
+      }
+      footer .footer-left, footer .footer-right {
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -222,18 +222,13 @@
   </div>
 
   <footer>
-    <div class="footer-container">
-      <div style="flex: 1; min-width: 250px;">
-        <h3>Kontakt</h3>
-        <p><a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
-      </div>
-      <div style="flex: 1; min-width: 250px;">
-        <h3>Standort</h3>
-        <p>Altenbekener Damm 83, 30173 Hannover</p>
-      </div>
+    <div class="footer-left">
+      <h3>Kontakt</h3>
+      <p><a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
     </div>
-    <div class="footer-bottom">
-      © 2025 Strato-Task - Tellkampfschule Hannover
+    <div class="footer-right">
+      <h3>Standort</h3>
+      <p>Altenbekener Damm 83, 30173 Hannover</p>
     </div>
   </footer>
 
@@ -264,6 +259,3 @@
   </script>
 </body>
 </html>
-
-
-
