@@ -2,73 +2,70 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Spendenaufruf-StratoTask</title>
+
   <style>
-    body {
+    /* Grundstyles */
+    html, body {
       margin: 0;
-      line-height: 1.6;
-      color: #ffffff;
+      padding: 0;
+      height: 100%;
       font-family: Georgia, "Times New Roman", Times, serif;
+      color: #fff;
+      line-height: 1.6;
       font-size: clamp(16px, 2vw, 24px);
-      position: relative;
       background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center;
       background-size: cover;
-      /* Hintergrund-Attachment fixed wird entfernt für bessere mobile Kompatibilität */
+      position: relative;
+      overflow-x: hidden;
     }
+
+    /* Overlay für Verdunkelung */
     #overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-color: rgba(0, 0, 0, 0.6);
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
 
-    @media (max-width: 768px) {
-      body {
-        font-size: clamp(12px, 4vw, 18px);
-      }
-      .headline {
-        font-size: 28px !important;
-      }
-      .about-container {
-        font-size: 18px !important;
-      }
-      .about-container h3 {
-        font-size: 24px !important;
-      }
-      .text-block {
-        font-size: 22px !important;
-        padding: 20px 25px !important;
-      }
-      .text-block h2 {
-        font-size: 28px !important;
-      }
-      .weather-image-section h3 {
-        font-size: 24px !important;
-      }
+    /* Container relativ über Overlay */
+    .container,
+    .about-container,
+    .text-container,
+    .weather-image-section,
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 0 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    /* Header Container */
     .container {
-      right: 32px;
-      left: 32px;
-      top: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-top: 16px;
+      padding-bottom: 16px;
     }
+
     .TS-Logo {
       width: 8%;
       height: auto;
     }
+
+    /* Headlines */
     .headline {
-      font-size: clamp(24px, 5vw, 60px);
       font-weight: bold;
+      font-size: clamp(24px, 5vw, 60px);
       margin: 0;
     }
+
+    /* Spendenbutton */
     .donate button {
       border: none;
       padding: 10px 15px;
@@ -80,59 +77,63 @@
       background: rgb(36, 36, 36);
       transition: 0.3s;
     }
-    .donate {
-      margin-right: 40px;
-    }
+
+    /* Separator Linie */
     .separator {
       width: 70%;
       margin: 40px auto 60px auto;
       border-top: 3px solid rgba(255, 255, 255, 0.4);
       border-radius: 3px;
     }
+
+    /* Über uns */
     .about-container {
-      max-width: 900px;
-      margin: 120px auto 0 auto;
-      padding: 0 20px;
+      margin-top: 120px;
       text-align: center;
       color: #ddd;
-      font-size: 24px;
-      line-height: 1.6;
-      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(18px, 2.5vw, 24px);
     }
+
     .about-container h3 {
-      font-size: 36px;
+      font-size: clamp(24px, 4vw, 36px);
       margin-bottom: 20px;
     }
+
+    /* Text Blöcke */
     .text-container {
-      max-width: 900px;
-      margin: 0 auto 0 auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
       text-align: center;
-      position: relative;
-      padding: 0 20px 40px 20px;
     }
+
     .text-block {
       background: rgba(0, 0, 0, 0.5);
       border-radius: 20px;
-      padding: 40px 50px;
+      padding: clamp(20px, 3vw, 40px) clamp(25px, 4vw, 50px);
       display: none;
       color: #fff;
-      font-size: 35px;
+      font-size: clamp(18px, 4vw, 35px);
       line-height: 1.3;
       transition: opacity 0.3s ease;
     }
+
     .text-block.active {
       display: block;
     }
+
     .text-block h2 {
-      font-size: 50px;
+      font-size: clamp(28px, 6vw, 50px);
       margin-bottom: 20px;
     }
+
+    /* Navigation Dots */
     .nav-dots {
       margin-top: 40px;
       display: flex;
       justify-content: center;
       gap: 20px;
     }
+
     .nav-dot {
       width: 25px;
       height: 25px;
@@ -142,53 +143,43 @@
       border: 2px solid transparent;
       transition: background-color 0.3s, border-color 0.3s;
     }
+
     .nav-dot.active {
       background-color: #ffffff;
       border-color: #36a2f5;
       box-shadow: 0 0 10px #36a2f5;
     }
-    /* Wetterballon-Block */
+
+    /* Wetterballon-Sektion */
     .weather-image-section {
-      max-width: 900px;
-      margin: 0 auto 60px auto;
       text-align: center;
+      margin-bottom: 60px;
     }
+
     .weather-image-section h3 {
-      font-size: 36px;
+      font-size: clamp(24px, 4vw, 36px);
       margin-top: 20px;
       margin-bottom: 20px;
       color: #fff;
-      font-family: Georgia, "Times New Roman", Times, serif;
     }
+
     .weather-image-section img {
       max-width: 100%;
       height: auto;
       border-radius: 12px;
-      margin-top: 16px;
       box-shadow: 0 3px 16px rgba(0,0,0,0.45);
       background: #fff;
     }
+
+    /* Footer */
     footer {
-      width: 100%;
       background: #111;
       color: #fff;
       padding: 60px 20px 30px;
       margin-top: 0;
+      text-align: center;
     }
-    footer h3 {
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-    footer p,
-    footer a {
-      font-size: 16px;
-      line-height: 1.4;
-      color: #ddd;
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: #fff;
-    }
+
     footer .footer-container {
       display: flex;
       flex-wrap: wrap;
@@ -196,14 +187,39 @@
       max-width: 1200px;
       margin: 0 auto;
       gap: 40px;
+      text-align: left;
     }
+
+    footer .footer-container > div {
+      flex: 1 1 250px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    footer p,
+    footer a {
+      font-size: 16px;
+      line-height: 1.4;
+      color: #ddd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
     footer .footer-bottom {
-      text-align: center;
       margin-top: 40px;
       font-size: 14px;
       color: #aaa;
       line-height: 1.6;
+      width: 100%;
     }
+
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -215,6 +231,7 @@
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.6);
     }
+
     .modal-content {
       background-color: #cccccc;
       margin: 10% auto;
@@ -226,6 +243,7 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
+
     .close {
       color: #000000;
       float: right;
@@ -233,9 +251,11 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     .close:hover {
       color: #000;
     }
+
   </style>
 </head>
 <body>
@@ -320,12 +340,12 @@
 
   <footer>
     <div class="footer-container">
-      <div style="flex: 1; min-width: 250px;">
+      <div>
         <h3>Kontakt</h3>
         <p><strong>Email:</strong> <a href="mailto:stratotask@tellkampfschule.eu">stratotask@tellkampfschule.eu</a></p>
         <p><strong>Adresse:</strong><br />Altenbekener Damm 83<br />30173 Hannover</p>
       </div>
-      <div style="flex: 1; min-width: 250px;">
+      <div>
         <h3>Standort</h3>
         <p>Altenbekener Damm 83, 30173 Hannover</p>
         <img src="data=HQ2wN3CFArkQyZVOTYrG2-3aBCzm44-Jve8SyDNsAMntbxUBYg39YddbuMwGPqfCOPOkAkrcgaVVa14opgmqlFIGiYl1oCJ90Dhfosm8_BA_gZ9dB75oesRIdZwUJ-Cql_vD6e7hCANNsqedYHUyOaAUhn1ocGYZjvz6yfhlGMBi66EFQQ&w=241&h=160.png" alt="Google Maps Standort" style="width:100%; max-width:300px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.3);" />
