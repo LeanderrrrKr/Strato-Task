@@ -9,19 +9,49 @@
       margin: 0;
       line-height: 1.6;
       color: #ffffff;
-      background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
       font-family: Georgia, "Times New Roman", Times, serif;
       font-size: clamp(16px, 2vw, 24px);
+      position: relative;
+      background: url(ebeab70a-9916-4722-a756-43952ef95e49.JPG) no-repeat center center;
+      background-size: cover;
+      /* Hintergrund-Attachment fixed wird entfernt für bessere mobile Kompatibilität */
     }
-    /* Für mobile Geräte Hintergrund fixiert entfernen */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      z-index: -1;
+    }
+
     @media (max-width: 768px) {
       body {
-        background-attachment: scroll;
         font-size: clamp(12px, 4vw, 18px);
       }
+      .headline {
+        font-size: 28px !important;
+      }
+      .about-container {
+        font-size: 18px !important;
+      }
+      .about-container h3 {
+        font-size: 24px !important;
+      }
+      .text-block {
+        font-size: 22px !important;
+        padding: 20px 25px !important;
+      }
+      .text-block h2 {
+        font-size: 28px !important;
+      }
+      .weather-image-section h3 {
+        font-size: 24px !important;
+      }
     }
+
     .container {
       right: 32px;
       left: 32px;
@@ -38,11 +68,6 @@
       font-size: clamp(24px, 5vw, 60px);
       font-weight: bold;
       margin: 0;
-    }
-    @media (max-width: 768px) {
-      .headline {
-        font-size: 28px;
-      }
     }
     .donate button {
       border: none;
@@ -74,19 +99,9 @@
       line-height: 1.6;
       font-family: Georgia, "Times New Roman", Times, serif;
     }
-    @media (max-width: 768px) {
-      .about-container {
-        font-size: 18px;
-      }
-    }
     .about-container h3 {
       font-size: 36px;
       margin-bottom: 20px;
-    }
-    @media (max-width: 768px) {
-      .about-container h3 {
-        font-size: 24px;
-      }
     }
     .text-container {
       max-width: 900px;
@@ -111,15 +126,6 @@
     .text-block h2 {
       font-size: 50px;
       margin-bottom: 20px;
-    }
-    @media (max-width: 768px) {
-      .text-block {
-        font-size: 22px;
-        padding: 20px 25px;
-      }
-      .text-block h2 {
-        font-size: 28px;
-      }
     }
     .nav-dots {
       margin-top: 40px;
@@ -153,11 +159,6 @@
       margin-bottom: 20px;
       color: #fff;
       font-family: Georgia, "Times New Roman", Times, serif;
-    }
-    @media (max-width: 768px) {
-      .weather-image-section h3 {
-        font-size: 24px;
-      }
     }
     .weather-image-section img {
       max-width: 100%;
@@ -238,6 +239,8 @@
   </style>
 </head>
 <body>
+  <div id="overlay"></div>
+
   <div class="container">
     <img class="TS-Logo" src="TS-Logo.png" alt="Logo" />
     <h1 class="headline">Strato-Task</h1>
